@@ -6,7 +6,7 @@ Target: [LaboriouslyExquisite/or-waste-tracker](https://github.com/LaboriouslyEx
 
 Use your own GitHub account or an organization you control. Codex does not need a separate personal account. A private repository can be edited with authenticated permission; public visibility only allows unauthenticated reading, not pushing. Choose visibility based on event rules and sharing preferences. Never upload original clinical footage or secrets as a way to make the demo accessible.
 
-The GitHub plugin is available and was suggested, but installation/authentication have not been verified. Install it and complete the GitHub connection for the selected repository if you want connector-based repository workflows. Local Git can also push through your authenticated credential manager. Check connection status before relying on write access.
+The GitHub plugin is installed and authenticated as `LaboriouslyExquisite`. Its repository metadata confirms read, push and admin permissions for this project, and the connector successfully read the published README. Local Git pushing was also verified. No additional account or public-visibility change is needed for this project.
 
 GitHub CLI was not found on PATH at preparation time. If you choose CLI authentication, install it through an approved installer and run this locally:
 
@@ -18,7 +18,7 @@ gh auth setup-git
 
 The browser login normally uses the system credential store; the CLI documents a plaintext fallback when that store is unavailable. Check the reported storage method. Do not paste a personal access token into chat. [GitHub authentication reference](https://cli.github.com/manual/gh_auth_login)
 
-Use `codex/` branches for implementation and review changes before merging. Git author identity and push credentials are different settings; commit authorship does not grant repository access. If this package was pushed as a preparation branch, select that branch when cloning/opening it for the build.
+The preparation package is published on `codex/vast-build-brief`, currently the repository's default branch. Start implementation from that branch and create a separate `codex/` implementation branch. Review changes before merging. Git author identity and push credentials are different settings; commit authorship does not grant repository access.
 
 ## Recommended Codex settings
 
