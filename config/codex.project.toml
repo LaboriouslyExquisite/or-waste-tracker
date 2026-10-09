@@ -1,0 +1,42 @@
+# Project settings; copied to .codex/config.toml by configure_codex.ps1.
+# Reopen this repository in Codex to load them. Managed policy can override.
+model = "gpt-6.1-sol"
+model_reasoning_effort = "xhigh"
+web_search = "live"
+approval_policy = "on-request"
+approvals_reviewer = "auto_review"
+default_permissions = "or-hackathon"
+
+[features]
+network_proxy = true
+
+[permissions.or-hackathon]
+description = "OR tracker workspace editing with scoped development and dataset network access."
+extends = ":workspace"
+
+[permissions.or-hackathon.network]
+enabled = true
+
+[permissions.or-hackathon.network.domains]
+"github.com" = "allow"
+"**.github.com" = "allow"
+"**.githubusercontent.com" = "allow"
+"registry.npmjs.org" = "allow"
+"pypi.org" = "allow"
+"files.pythonhosted.org" = "allow"
+"**.huggingface.co" = "allow"
+"**.hf.co" = "allow"
+"**.xethub.hf.co" = "allow"
+"**.wandb.ai" = "allow"
+"**.wandb.io" = "allow"
+"api.openai.com" = "allow"
+"developers.openai.com" = "allow"
+"learn.chatgpt.com" = "allow"
+"docs.nvidia.com" = "allow"
+"nvidia-cosmos.github.io" = "allow"
+"s3.unistra.fr" = "allow"
+"jomi.com" = "allow"
+"www.theseus.fi" = "allow"
+"127.0.0.1" = "allow"
+"localhost" = "allow"
+# Add actual VAST/CoreWeave service hosts from the event handoff when known.

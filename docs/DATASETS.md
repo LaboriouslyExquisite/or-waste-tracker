@@ -1,6 +1,6 @@
 # Footage research and selection
 
-Reviewed on October 9, 2026. Search used Exa across eight queries with 55 returned results before URL deduplication; primary maintainers and original research pages were then fetched. Availability below reflects documented access, not a completed download or visual validation. No footage has been downloaded into this repository.
+Reviewed October 9, 2026. Initial Exa search returned 55 results across eight queries; further research and actual bounded EgoExOR inspections are in [HANDOFF.md](../HANDOFF.md). Private samples now exist under ignored runtime/media directories. No complete real OR waste case qualified. Event guide prohibits internet-video ingest; external/staged VSS import permission is unresolved. Comparison below is initial research, not approved demo assets.
 
 ## User's priority
 
@@ -14,7 +14,7 @@ No verified free source found in this search satisfies all of continuous real OR
 
 | Source | Nature / documented access | Fit and decision |
 | --- | --- | --- |
-| Organizer library | Content and terms not supplied | First choice; inspect as soon as access arrives |
+| Organizer library | Published corpus: traffic, streets, warehouse/indoor scenes; live Team 8 inventory unqueried | First priority if suitable OR footage exists; nonmedical footage is not a surgery |
 | [MVOR](https://github.com/CAMMA-public/MVOR) | Real clinical external views; 732 synchronized multi-view frame samples; download instructions; CC BY-NC-SA 4.0 | Real OR reference/pose baseline. Sampled frames do not provide an uninterrupted opening/use history. Not the full waste demo |
 | [AVOS](https://research.bidmc.org/surgical-informatics/avos) | Open-surgery video research based on publicly available recordings | Lead for tool-use examples. Primary page does not establish reusable package-opening footage or redistribution rights for source videos. Per-video rights and suitability remain unverified |
 | [Team-OR](https://github.com/CAMMA-public/Team-OR) | Real surgical recordings studied by authors | Exclude as downloadable media: maintainers explicitly state dataset cannot be made public due to privacy/ethical concerns |

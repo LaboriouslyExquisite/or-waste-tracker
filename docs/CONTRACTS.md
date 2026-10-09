@@ -111,6 +111,8 @@ opened_cost = sum(p_i for known-priced opened disposable instances)
 used_cost = sum(p_i for opened instances with established use)
 verified_waste = sum(p_i for opened instances with reviewed unused disposition)
 opened_unused_exposure = opened_cost - used_cost - verified_waste
+unused_balance = opened_cost - used_cost
+unused_balance = verified_waste + opened_unused_exposure
 ```
 
 Used and verified-waste sets must be disjoint. Contradictory instances belong to exposure. Unresolved exposure is a subset of exposure, not an additional cost. Unknown-priced items appear as counts outside these subtotals. Total unopened inventory, reusable instrument prices, hospital charges, taxes, reimbursement and procurement commitments are outside this calculation.
@@ -118,6 +120,8 @@ Used and verified-waste sets must be disjoint. Contradictory instances belong to
 Chart series are projections as of the source cursor. Corrections can revise prior points; show report/version metadata. Billing quantities are integers with reviewed unit semantics; do not multiply a pack price by its contents.
 
 ## Our backend API
+
+Venue extensions: case metadata includes `procedure_id`, `procedure_label`, `preference_card_version` (nullable), footage origin, inference mode, coverage and priced-item coverage. Evidence includes `temporal_precision` (`frame`, `reviewed_interval`, `segment`). Preserve segment bounds separately from refined action intervals. Add `GET /api/procedures`, `GET /api/procedures/{id}/cases`, and `GET /api/cases` for ranking and navigation. Aggregates return metric/denominator definitions, eligible case count and cohort provenance; synthetic and actual cases cannot share one aggregate. Average opened supply cost and verified-unused cost use their own eligible denominators. Missing data remains null. See [LATEST_BUILD_BRIEF.md](LATEST_BUILD_BRIEF.md).
 
 | Method and path | Behavior |
 | --- | --- |

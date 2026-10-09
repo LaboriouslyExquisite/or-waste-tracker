@@ -1,12 +1,14 @@
 # Interface specification
 
+Venue update: [LATEST_BUILD_BRIEF.md](LATEST_BUILD_BRIEF.md) controls overview/procedure/case navigation, light clinical palette, final-table review and unused balance. Evidence interactions below still apply.
+
 The central experience is a redacted recording with synchronized supply observations and an honest cost timeline. Keep opening and evidence visible; keep model/service internals in a compact provenance drawer.
 
 ## Case workspace
 
 Header: product name, anonymized case ID, source type, inference mode, playback/analysis state. Prominent badges distinguish real organizer footage, public real OR, simulated OR, staged media and synthetic ledger replay. Show provider lag and stale-data state when material.
 
-Main area: video on the left, live summary and event feed on the right, synchronized chart below. Use dark charcoal, neutral panels, teal for used items, amber for opened-unused exposure, red/orange for verified waste, grey for uncertain and violet for reusable tools. Labels and icons carry the same information as colors.
+Main area: video on left, live summary/event feed on right, chart below. White/light slate workspace, navy navigation/type and dark video frame. Teal for used, amber exposure, restrained red verified waste, grey uncertain and violet reusable tools. Labels/icons carry the same information as colors.
 
 Metric cards:
 

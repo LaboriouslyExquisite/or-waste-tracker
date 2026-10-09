@@ -1,5 +1,7 @@
 # Architecture
 
+Venue update: use deployed VSS processing/retrieval in [STACK_ACCESS.md](STACK_ACCESS.md), with remote CoreWeave models. External OR upload permission is pending. Translate retrieved descriptions/detections into validated ledger observations. The original diagram below describes conceptual boundaries, not a requirement for independent direct model calls or a new pipeline. Follow [HANDOFF.md](../HANDOFF.md) for execution/deployment state.
+
 The application owns event validation, item identity, billing and reports. Sponsor services supply detections, observations, retrieval and language generation through replaceable adapters.
 
 ```mermaid

@@ -1,5 +1,7 @@
 # Video and inference pipeline
 
+Venue update: [HANDOFF.md](../HANDOFF.md) and [STACK_ACCESS.md](STACK_ACCESS.md) supersede speculative serving assumptions. Use deployed VSS processing/retrieval; external OR ingest permission unresolved. Observation, identity and redaction requirements below still apply.
+
 ## Media selection and redaction
 
 Use the source order in [DATASETS.md](DATASETS.md). The primary camera should show the package-opening area and supply table, not just tools that were already opened. A view of the table alone cannot establish all clinical usage.
