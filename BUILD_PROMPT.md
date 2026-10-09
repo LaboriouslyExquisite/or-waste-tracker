@@ -1,5 +1,7 @@
 # Implementation request
 
+**Venue update, October 9:** start with [HANDOFF.md](HANDOFF.md) and use [ASTRA_BUILD_PROMPT.md](ASTRA_BUILD_PROMPT.md). These incorporate the actual stack, procedure dashboard, updated meter, data restrictions and 3:30 PM ET working-demo target. The original request below is historical background; latest handoff controls conflicts.
+
 Paste the following into Codex with this repository selected, after filling the stack handoff. File paths below are relative to this repository root.
 
 ```text

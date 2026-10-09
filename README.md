@@ -4,9 +4,11 @@ Build preparation for the VAST Builders Challenge. Working product name: **OR Wa
 
 **Camera -> YOLO detections and tracking -> Cosmos observations -> deterministic cost ledger -> W&B agent and Weave evaluation -> evidence-linked case report.**
 
-This repository currently contains a specification package, not a running application. No sponsor endpoints, footage, prices, or measured accuracy have been supplied. The next implementation session should start with [BUILD_PROMPT.md](BUILD_PROMPT.md).
+This repository contains specifications and preparation scripts, not a running application. Venue docs and bounded simulated footage samples have been inspected; qualified OR waste footage, actual prices, provider receipts and measured accuracy remain unavailable. Start with [HANDOFF.md](HANDOFF.md) and [ASTRA_BUILD_PROMPT.md](ASTRA_BUILD_PROMPT.md). Working-demo target: **3:30 PM ET October 9**; submission: **4:30 PM ET**.
 
 ## Agreed experience
+
+Updated scope: clinical dashboard ranking disposable supply cost by procedure, drill-down into cases/timestamped evidence, unused-value timeline, final-table review and preference-card candidates. [Latest brief](docs/LATEST_BUILD_BRIEF.md) supersedes one-case-only navigation. External/staged VSS import permission remains unresolved; continue independent app work.
 
 Use organizer-provided footage first when available, then suitable public real OR footage. Highlight sterile supply package opening, tool handoffs and visible use. Hide patients, faces, blood and the surgical field before footage reaches the browser or external models. Show how mapped disposable supply cost accumulates over source-video time, then show reviewed opened-but-unused waste at case end.
 
@@ -36,9 +38,9 @@ Opening a disposable sterile supply commits its cost; it does not itself establi
 
 ## Start when stack access arrives
 
-1. Complete the non-secret handoff in [STACK_ACCESS.md](docs/STACK_ACCESS.md); put tokens in local environment variables.
+1. Read [HANDOFF.md](HANDOFF.md) and [STACK_ACCESS.md](docs/STACK_ACCESS.md); keep tokens server-side in the VM environment.
 2. Select a permitted clip using [DATASETS.md](docs/DATASETS.md), preprocess and inspect its redacted derivative.
-3. Open this repository in Codex and paste [BUILD_PROMPT.md](BUILD_PROMPT.md).
+3. Open this repository in Codex and send [ASTRA_BUILD_PROMPT.md](ASTRA_BUILD_PROMPT.md) after choosing the model.
 4. Build the complete local replay path, then attach verified providers and run measured evaluations.
 
 The best demo is one trustworthy case with clickable evidence. Claims about deployment at hospitals, hours searched, exact SKU costs or real-time accuracy must match the data actually demonstrated.

@@ -1,5 +1,7 @@
 # Product specification
 
+Venue update: [LATEST_BUILD_BRIEF.md](LATEST_BUILD_BRIEF.md) governs procedure ranking, multi-case navigation, clinical visual design and unused balance. [HANDOFF.md](../HANDOFF.md) records verified stack/data constraints and the 3:30 PM ET working-demo target.
+
 ## Problem and promise
 
 Disposable sterile supplies opened for a procedure can incur cost even when never used. OR Waste Tracker connects video evidence to a catalog and produces an auditable account of what was opened, visibly used, left unresolved and verified unused.
@@ -21,9 +23,11 @@ The demo user is an OR operations or supply reviewer. They select one permitted 
 
 ## MVP scope
 
-One camera, one case, one currency (USD), approximately six visually distinguishable disposable classes and a small supplied price catalog. Match the actual visible classes; the six fixture categories are a starting point, not a detector accuracy promise. Show reusable tool movement separately if visible. Use an imported recording paced at playback speed first; webcam streaming is a stretch.
+Procedure overview and multi-case navigation are required. Start actual video analysis with one qualified camera/case, one currency (USD), distinguishable disposable classes and a reviewed catalog. Match actual visible classes; fixture categories are not detector accuracy promises. Synthetic cohorts remain separate. Show reusable tools separately. Paced recording analysis first; webcam streaming is a stretch. External VSS import requires organizer clarification.
 
 Required screens: case workspace with video and timeline, evidence/review drawer, case-end report and clip search. Required systems: video redaction, provider adapters, deterministic ledger, SSE updates, report agent, Weave evaluation, explicit fallback modes.
+
+Also required: procedure ranking, procedure case list and preference review navigation. Live unused balance is opened minus used, equal to verified waste plus exposure; it is not refunded money.
 
 ## Monetary meanings
 

@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+.venv*/
+__pycache__/
+*.py[cod]
+node_modules/
+dist/
+runtime/
+media/
+artifacts/
+config/stack.local.json
+*.local.json
+test-results/
+playwright-report/
+.DS_Store
+.codex/

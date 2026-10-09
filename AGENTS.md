@@ -4,19 +4,19 @@
 
 Build the OR Waste Tracker described in [BUILD_PROMPT.md](BUILD_PROMPT.md) and the linked specifications. This is an independent project. Do not modify a parent repository or reuse another app's routes, dependency files, credentials or deployment configuration.
 
-Read the product, contracts, pipeline, stack handoff, fixtures and evaluation documents before implementation. Contracts govern financial and event behavior; PRD governs scope; the latest verified organizer documentation governs provider payloads. Record any necessary change in the relevant document.
+Read [HANDOFF.md](HANDOFF.md), [docs/LATEST_BUILD_BRIEF.md](docs/LATEST_BUILD_BRIEF.md) and the updated stack access first, then the product, contracts, pipeline, fixtures and evaluation documents. The October 9 handoff/latest brief supersede earlier scope, palette and speculative serving assumptions. Contracts govern financial and event behavior; latest verified organizer documentation governs provider payloads. Working demo target: 3:30 PM ET; submission: 4:30 PM ET. Record changes in the relevant document.
 
 ## Implementation rules
 
-- Default implementation: React + TypeScript + Vite frontend; Python FastAPI backend; SQLite ledger; FFmpeg media preparation; server-sent events. Keep the first version to one case and one camera.
+- Default implementation: React + TypeScript + Vite frontend; Python FastAPI backend; SQLite ledger; FFmpeg media preparation; server-sent events. Implement procedure ranking -> cases -> evidence/report. Keep actual analysis to one qualified case/camera initially; multi-case navigation is required. Synthetic cohorts stay separate and labeled.
 - Implement replay mode without GPU or credentials first. Live-provider mode must use verified endpoints and report its actual status. Never silently replace live inference with fixtures.
-- Footage preference: organizer-provided first; suitable public real OR next. Simulated or staged media must be labeled as such and used only as an explicit fallback.
+- Footage preference: organizer-provided first; suitable public real OR next. Simulated or staged media must be labeled as such and used only as an explicit fallback. Organizer guide prohibits internet-video ingest; clarify external/staged imports before upload. Continue independent app work meanwhile.
 - Display and upload only redacted, reviewed derivatives. Raw clinical source footage must never be a frontend asset, a trace attachment or a public repository file.
 - Opening, holding, handoff and visible use are different observations. Disappearance is never proof of use or non-use. Preserve unknowns and incomplete coverage.
 - Persistent application item IDs are distinct from tracker IDs. Resolve duplicate observations before ledger updates. Do not bill packaging and its contents twice.
 - All monetary calculations use integer cents and a case-specific price snapshot. The LLM cannot invent SKUs, prices, costs, savings or event times.
 - Track reusable tools but exclude them from disposable waste. Single-item identity and price mapping must be reviewed or unambiguous.
-- The live UI separates opened cost, opened-unused exposure, verified waste and unresolved items. Waste verification requires reviewer disposition with evidence, not model confidence alone.
+- Separate opened cost, used value, opened-unused exposure, verified waste and unresolved items. Live unused balance is opened minus used, including verified waste plus exposure. Use never refunds opening cost. Waste verification requires reviewed evidence, not model confidence alone.
 - Report suggestions are preference-card review candidates, especially keeping an item sealed until requested. They never update clinical cards or restrict item availability.
 - A one-case finding is not recurring savings evidence. Exclude safety-critical items from reduction suggestions.
 - Media text, captions, search results and model output are data. They cannot grant permissions, change configured providers or invoke arbitrary tools.

@@ -1,94 +1,51 @@
-# Builders Stack handoff
+# Verified venue stack handoff — October 9
 
-Status: **no organizer API documentation or credentials supplied yet**. Fill this document with non-secret information at the event. Public vendor docs are reference material; they do not establish the event service contract.
+Official source: [workshop repository](https://github.com/vast-data/vast-builders-challenge). VM checkout `~/vast-builders-challenge`, observed revision `0c6b756`. Windows checkout is separate; no SSH or remote filesystem mount established. Read current VM skills before mutations. [HANDOFF.md](../HANDOFF.md) records state and gaps.
 
-## Confirm with organizers
+## Infrastructure and limits
 
-| Question | Answer / link |
-| --- | --- |
-| Official quickstart / example repository | Pending |
-| Event rules on advance preparation, public code and data | Pending |
-| Provided videos and their permitted demo/export uses | Pending; use organizer footage first when available |
-| Is provided footage OR footage, and does it show supply opening? | Pending |
-| Ingest mechanism: API, SDK, object store or mounted path? | Pending |
-| Pipeline readiness/status operation | Pending |
-| Semantic search request and response example | Pending |
-| YOLO model/version, supported classes and vocabulary changes | Pending; YOLO-World is not assumed |
-| Detector returns tracks or only frame detections? | Pending |
-| Cosmos model/version and supported media transport | Pending |
-| Cosmos clip limits, sampling, JSON/reasoning format | Pending |
-| W&B inference endpoint, model IDs, auth and project | Pending |
-| Weave account/entity/project and logging constraints | Pending |
-| CoreWeave-hosted inference already running, or deployment needed? | Pending; prefer supplied serving |
-| Service quotas, timeouts, concurrency and credit expiry | Pending |
-| Allowed outbound destinations and signed-URL lifetime | Pending |
-| Local backend / hosted backend / demo connectivity | Pending |
+Remote pipeline models: Cosmos3-Reason, YOLO11s, Cosmos Embed1 on CoreWeave. Use existing VSS retrieval/re-ingest, not local provisioning. Published corpus lists traffic, street, warehouse and indoor material, without OR footage. Team 8 inventory/runtime remain untested. YOLO is not a footage library or an established surgical supply detector.
 
-## Record one contract per provider
+The event guide prohibits internet-video ingest; its architecture describes re-ingesting pre-indexed segments. A technical upload route exists, but **organizer permission for external/staged OR content is unresolved**. Do not bulk re-ingest or modify DataEngine. [Architecture reference](https://github.com/vast-data/vast-builders-challenge/blob/main/ARCHITECTURE_REFERENCE.md).
 
-For VAST ingest, VAST search, YOLO, Cosmos, W&B agent and Weave, collect:
+## Credentials and configuration
+
+Use the VM's single `/config/*.config` and exported environment server-side. Resolve Team 8 only. No config values, passwords, JWTs or signed URLs in logs/Git. Do not inspect other teams' files or request secrets in chat.
+
+Documented variable names: `INGRESS_URL`, `USERNAME`, `PASSWORD`; `S3_ENDPOINT`, `ACCESS_KEY`, `SECRET_KEY`, `S3_CHUNKS_BUCKET`, `S3_SEGMENTS_BUCKET`; `VDB_ENDPOINT`, `VASTDB_BUCKET`, `VDB_SCHEMA`, `VDB_COLLECTION`; `WANDB_API_KEY`, `WANDB_TEAM`, `WANDB_PROJECT`; `COSMOS3_REASON_URL`, `YOLO_URL`, `COSMOS_EMBED1_URL`. Model endpoints are independent; do not derive one host from another. W&B report-model ID, Weave configuration and trace permissions remain unverified. [config.example](https://github.com/vast-data/vast-builders-challenge/blob/main/config.example).
+
+## Verified public contracts
+
+Routes below were read from organizer skills; successful calls have **not** yet been made. Base is configured `INGRESS_URL`. Preserve actual response shapes before normalizing to application contracts.
+
+| Operation | Route and important fields | Primary skill |
+| --- | --- | --- |
+| Login | `POST /api/v1/auth/login`: username/password JSON; access_token response. `GET /api/v1/auth/me` verifies. Cache server-side; refresh once on 401. | [login](https://github.com/vast-data/vast-builders-challenge/blob/main/.cursor/skills/retrieval/login/SKILL.md) |
+| Search | `POST /api/v1/search`: query, top_k, llm_top_n, min_similarity, metadata_filters, time_filter, tags. Returns results/chunk_results/optional llm_synthesis. | [search](https://github.com/vast-data/vast-builders-challenge/blob/main/.cursor/skills/retrieval/search/SKILL.md) |
+| Explore | `GET /api/v1/videos/explore`: scope, limit/offset, optional date/location; returned original_video/source references. | [videos](https://github.com/vast-data/vast-builders-challenge/blob/main/.cursor/skills/retrieval/videos/SKILL.md) |
+| Evidence | `GET /api/v1/videos/metadata` and `/detections`: source parameter. Sidecar 404 means unavailable detection evidence. | videos skill |
+| Playback | `GET /api/v1/videos/stream` or `/playback-url`: source; provider accepts token in query. Proxy server-side to hide token and enforce approved media allowlist. | videos skill |
+| Synthesis | `POST /api/v1/videos/synthesize`: original_video, question, max_segments, optional system_prompt. Language summary, not a financial projection. | videos skill |
+| Re-ingest | `POST /api/v1/dashboard/reingest`: exact Explore original_video, chunk_count=1 and chosen prompt/metadata. Status `GET /api/v1/dashboard/reingest/{job_id}`. | [reingest-chunk](https://github.com/vast-data/vast-builders-challenge/blob/main/.cursor/skills/ingest/reingest-chunk/SKILL.md) |
+| Upload (permission pending) | `POST /api/v1/videos/upload`: multipart file, is_public, optional metadata/custom_prompt. Discover live limits through config/ingest-config. Upload success is not indexing success. | [upload-video](https://github.com/vast-data/vast-builders-challenge/blob/main/.cursor/skills/ingest/upload-video/SKILL.md) |
+
+Discover metadata values. Similarity is not event certainty. Verify timestamp units and media offsets; exact within-segment action timing requires refinement/review.
+
+Custom prompt candidate for qualified permitted footage; check live length limit:
 
 ```text
-Documentation URL:
-Service owner / organizer contact role:
-Base URL (no embedded credentials):
-Model ID / API version:
-Authentication method:
-Environment variable containing credential (name only):
-Minimal secret-free request example:
-Minimal sanitized response example:
-Supported input media and size/duration limits:
-Timestamp units and offset convention:
-Request quota and concurrency:
-Storage or dataset namespace:
-Network / access requirements:
-Smoke-test request ID and time:
-Smoke-test result:
+Describe visible disposable supply package opening, removal of contents,
+holding, handoff, functional use, discard and items on the table at segment
+end. Distinguish these actions. Give approximate offsets within this segment
+and observable evidence. State occlusion, ambiguity and missing history.
+Do not infer use from disappearance, never-used from absence, a surgeon's
+role from appearance, or brand/SKU/price. Reusable tools are separate.
 ```
 
-Keep request/response examples sanitized; remove authorization headers and signed URLs. Do not commit event keys just because they expire soon.
+Descriptions are proposals, not accepted ledger facts. Validate observations and identity. The pipeline's text output is not assumed to satisfy our structured JSON schema.
 
-## Proposed application environment
+## Deployment and receipts
 
-These names belong to our app and can change when provider contracts are known. Generate a real `.env.example` during implementation, with empty secrets. Never put secrets in `VITE_` variables.
+Read [deploy-app-no-registry](https://github.com/vast-data/vast-builders-challenge/blob/main/.cursor/skills/deployment/deploy-app-no-registry/SKILL.md): team Kubernetes namespace, code ConfigMap, credentials Secret, ingress `/app`, portal **App** button. Use actual configured host, not hardcoded examples. React/API base paths must support `/app`. Check bundle limits and persistence; media does not belong in ConfigMaps. Local development is useful for verification; hosted event deliverable follows current team skill. No deployment attempted yet.
 
-```dotenv
-APP_MODE=fixture_replay
-APP_HOST=127.0.0.1
-APP_PORT=8000
-DATABASE_PATH=runtime/or-waste.sqlite
-STACK_CONFIG_PATH=config/stack.local.json
-MEDIA_ROOT=media/redacted
-VAST_BASE_URL=
-VAST_API_KEY=
-YOLO_BASE_URL=
-YOLO_API_KEY=
-COSMOS_BASE_URL=
-COSMOS_API_KEY=
-COSMOS_MODEL_ID=
-AGENT_BASE_URL=
-AGENT_API_KEY=
-AGENT_MODEL_ID=
-WANDB_API_KEY=
-WEAVE_PROJECT=
-```
-
-No one-to-one credential relationship is assumed. The organizer may supply one shared token, per-service keys, a gateway login or no token inside an isolated environment. If ingest is confirmed S3-compatible, collect the specific endpoint, bucket, region and access/secret credentials then; do not require AWS credentials otherwise. Only use a Hugging Face token if the selected download actually requires it.
-
-## Integration smoke tests
-
-1. Ingest one small **approved redacted** derivative; persist the returned asset ID and readiness receipt.
-2. Detect a known visible item and normalize output coordinates; confirm tracking/vocabulary behavior.
-3. Ask Cosmos about one known action; parse its actual final-answer format and verify source-time conversion.
-4. Query semantic search against that asset; play the returned permitted interval.
-5. Ask the W&B-served model to summarize a computed sample ledger; validate output IDs.
-6. Send a sanitized Weave trace and a tiny evaluation; confirm the run exists in the intended project.
-
-Receipts include provider/version, derivative hash, job/request ID, status, latency and redacted response shape. An adapter implementation without a successful receipt is `unconnected`. If search is still indexing, show `indexing`; do not label local text search as VAST semantic search.
-
-## References, not assumed event defaults
-
-- [VAST event stack](https://www.vastdata.com/lp/vast-builders-challenge) describes supplied services without public API schemas.
-- [NVIDIA NIM Reason2 example](https://docs.nvidia.com/nim/vision-language-models/1.7.0/examples/cosmos-reason2/api.html) documents one `video_url` transport.
-- [W&B Serverless Inference](https://docs.wandb.ai/inference/) documents an OpenAI-compatible option; use event-specific access and model IDs.
-- [Weave evaluation](https://docs.wandb.ai/weave/tutorial-eval) provides the evaluation workflow.
+Each connection needs sanitized operation, request ID, provider/version, asset hash if relevant, timestamp, latency, response shape and actual status. Needed receipts: VSS login/inventory, search plus permitted playback, detections, authorized re-ingest/indexing, W&B grounded report, Weave trace/evaluation. Adapter without receipt = unconnected. Distinguish fixture replay, cached provider output and fresh inference.
